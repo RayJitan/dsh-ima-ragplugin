@@ -3,5 +3,5 @@
 # load ./client as the browser half, and the client half registers the settings
 # card on the `plugins.bundle.config` slot.
 - insert:
-    - id: ima-knowledge
+    - id: ima-ragplugin
       name: dsh-ima-ragplugin

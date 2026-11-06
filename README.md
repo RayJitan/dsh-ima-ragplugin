@@ -30,21 +30,55 @@ DeepSeek Harness（DSH）插件：把 IMA 账号里**可访问 / 已订阅的知
 
 ## 安装
 
-两条路径任选其一。
+### 桌面端：在 DSH 插件页里安装
 
-**① 从 DSH 插件页的「发现」市场安装（推荐）**
+打开 DSH → **插件**，两种方式任选其一：
 
-打开 DSH 的插件页 → 「发现」→ 搜索 `dsh-ima-ragplugin` → 安装，然后重启 DSH。
+**① 「添加插件」直接粘贴仓库地址（最快）**
 
-**② 用命令行安装**
+在插件页点「添加插件」，粘贴：
 
-```powershell
-dsh plugin add dsh-ima-ragplugin
+```
+https://github.com/RayJitan/dsh-ima-ragplugin
 ```
 
-安装完成后重启 DSH（Web / 桌面端均可），左侧边栏会出现 IMA 图标。
+确认框会显示来源（Git 仓库 + commit），确认后安装。
 
-> 本插件没有第三方运行时依赖（纯 ESM），安装即用，不需要额外的构建步骤。
+**② 从「发现」市场安装**
+
+「发现」标签页默认没有任何索引源，需要先添加一次：
+
+1. 插件页 → **发现** → **添加索引源**
+2. 填入市场索引地址：
+
+   ```
+   https://rayjitan.github.io/dsh-ima-ragplugin/index.json
+   ```
+
+3. 搜索 `dsh-ima-ragplugin` → 安装。
+
+安装完成后**重启 DSH 桌面应用**，左侧边栏会出现 IMA 图标。
+
+### 命令行：安装到非 desktop 的 profile
+
+```powershell
+dsh plugin --profile <profile-name> add dsh-ima-ragplugin
+```
+
+> `--profile desktop` 由 DSH 桌面应用独占管理，独立 CLI 会直接拒绝（`profile "desktop" is managed exclusively by the Electron application`）。
+> 桌面端请用上面的插件页路径；命令行只适用于自建 profile（如 `dsh --profile demo`）。
+
+### 从旧版 `dsh-ima-knowledge` 迁移
+
+旧包与本包注册同一批工具和同一组 `/api/ima-knowledge/*` 路由，**不能同时启用**。切换顺序：
+
+1. 插件页 → 已安装 → `dsh-ima-knowledge` → **卸载**
+2. 按上面的方式安装 `dsh-ima-ragplugin`
+3. 重启 DSH
+
+凭据（`IMA_X_IMA_COOKIE` / `IMA_X_IMA_BKN`）、已选知识库、签到配置都在 credential store 与 `~/.dsh/ima-knowledge/` 里，迁移后自动沿用，无需重新配置。
+
+> 本插件没有第三方运行时依赖（纯 ESM），也没有 `prepare`/`build` 脚本，从 Git 安装不需要 pnpm 的构建授权。
 
 ## 凭据配置
 
@@ -125,9 +159,13 @@ IMA 官方活动「每日登录福利」：每天签到领 **50 算力**，同�
 
 | 项 | 要求 |
 |---|---|
-| DSH | `>=0.2.0 <0.3.0`（范围含预发布版，`0.2.1-rc.2` 满足） |
+| DSH | `>=0.2.0 <0.3.0`（范围含预发布版；已在 `0.2.1-rc.2` 与 `0.2.1-rc.5` 上验证） |
 | Node.js | `^22.19.0 || >=24.0.0` |
 | 平台 | DSH Web 与桌面端（浏览器半侧声明 `platform: web`） |
+
+> 兼容性判定读的是 `package.json` 的 `engines.dsh`：DSH 用 `semver.satisfies(version, range, { includePrerelease: true })` 比较，
+> 因此 `0.2.1-rc.x` 这类预发布版本也能命中 `>=0.2.0 <0.3.0`。范围外的 DSH 会**静默跳过**本插件（装上了但不生效），
+> 若你自行修改版本范围，请确认上下界。
 
 ## 已知约束
 
