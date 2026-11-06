@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "title": {
+    "en": "RayJitan DSH plugins",
+    "zh": "RayJitan DSH 插件"
+  },
+  "description": {
+    "en": "Plugins for DeepSeek Harness published by RayJitan.",
+    "zh": "RayJitan 发布给 DeepSeek Harness 的插件。"
+  },
+  "plugins": [
+    {
+      "name": "dsh-ima-ragplugin",
+      "title": {
+        "en": "IMA Knowledge Base (RAG)",
+        "zh": "IMA 知识库（RAG）"
+      },
+      "description": {
+        "en": "Attach the knowledge bases your IMA account can access to DeepSeek Harness and let the model search them with native tools.",
+        "zh": "把 IMA 账号里可访问/已订阅的知识库接入 DeepSeek Harness，让模型用原生工具检索原文。"
+      },
+      "icon": "icons/icon.svg",
+      "author": "RayJitan",
+      "homepage": "https://github.com/RayJitan/dsh-ima-ragplugin#readme",
+      "repository": {
+        "url": "https://github.com/RayJitan/dsh-ima-ragplugin"
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "publishTimestamp": 1793940014,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/RayJitan/dsh-ima-ragplugin",
+            "commit": "f08bbe75747460248802ff2e2dc1f4af0b9b5a13"
+          },
+          "engines": {
+            "dsh": ">=0.2.0 <0.3.0"
+          }
+        }
+      ]
+    }
+  ]
+}
