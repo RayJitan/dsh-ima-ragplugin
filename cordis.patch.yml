@@ -1,0 +1,7 @@
+# Bundle patch layer: loads this package's main entry as the host half (a plain
+# Cordis plugin). The `dsh.client` declaration in package.json makes the web app
+# load ./client as the browser half, and the client half registers the settings
+# card on the `plugins.bundle.config` slot.
+- insert:
+    - id: ima-knowledge
+      name: dsh-ima-ragplugin

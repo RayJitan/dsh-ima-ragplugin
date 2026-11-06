@@ -1,0 +1,69 @@
+{
+  "name": "dsh-ima-ragplugin",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "从 IMA 账号读取可访问/订阅的知识库并在设置页勾选，向 DeepSeek Harness 提供 ima_kb_list / ima_kb_search / ima_kb_ask 原生工具",
+  "license": "MIT",
+  "author": "RayJitan",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "ima",
+    "ima-copilot",
+    "knowledge-base",
+    "rag",
+    "retrieval"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RayJitan/dsh-ima-ragplugin.git"
+  },
+  "homepage": "https://github.com/RayJitan/dsh-ima-ragplugin#readme",
+  "bugs": {
+    "url": "https://github.com/RayJitan/dsh-ima-ragplugin/issues"
+  },
+  "main": "lib/host.js",
+  "exports": {
+    ".": "./lib/host.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib/host.js",
+    "lib/client.js",
+    "lib/ima-api.js",
+    "lib/session-store.js",
+    "lib/desktop-sync.js",
+    "lib/checkin.js",
+    "lib/checkin-store.js",
+    "lib/checkin-scheduler.js",
+    "locale/*.json",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "docs/CHECKIN.md"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-settings-plugins",
+        "@deepseek-ai/dsh-client-ui-commands"
+      ],
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.0 <0.3.0"
+  }
+}
