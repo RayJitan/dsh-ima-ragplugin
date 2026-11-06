@@ -28,11 +28,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1793940014,
+          "publishTimestamp": 1793940142,
           "source": {
             "type": "git",
             "url": "https://github.com/RayJitan/dsh-ima-ragplugin",
-            "commit": "f08bbe75747460248802ff2e2dc1f4af0b9b5a13"
+            "commit": "7565c3e6af5118506ae0a3e65152ea6962bfc191"
           },
           "engines": {
             "dsh": ">=0.2.0 <0.3.0"
